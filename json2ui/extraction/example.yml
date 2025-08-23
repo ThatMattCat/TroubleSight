@@ -1,0 +1,30 @@
+tables:
+  example_table_1:
+    file_pattern: "example_1.json"
+    root_path: "$[*]"
+    fields:
+      - name: array_field_1
+        path: "$.array_field_1"
+        default: "Default Value"
+        type: TEXT
+      - name: array_field_2
+        path: "$.array_field_2"
+  example_table_2:
+    file_pattern: "example_2.json"
+    root_path: "$.my_array[*]"
+    fields:
+      - name: field1
+        path: "$.field1"
+        type: TEXT
+      - name: field2
+        path: "$.field2"
+        type: TEXT
+      - name: field3
+        path: "$['Field Three']"
+        type: TEXT
+  example_table_3:
+    file_pattern: "example_3.json"
+    root_path: "$"
+  example_table_4:
+    file_pattern: "*ple_4.json"
+    root_path: "$"

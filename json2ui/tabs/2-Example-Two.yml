@@ -1,0 +1,8 @@
+description: "This is the description for the entire tab in the UI."
+queries:
+  ⚠️ These Could Be Identified Concerns:
+    description: "Description for the specific section/table."
+    sql: |
+      SELECT * FROM example_table_3
+    display:
+      type: dataframe

@@ -1,0 +1,13 @@
+[server]
+enableStaticServing = true
+port = 8080
+
+[client]
+toolbarMode = "auto"
+
+[browser]
+gatherUsageStats = false
+
+[logger]
+level = "info"
+messageFormat = "[Streamlit] %(levelname)s %(asctime)s: %(message)s"
