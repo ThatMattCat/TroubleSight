@@ -8,7 +8,7 @@ A powerful, configuration-driven tool that transforms JSON data into interactive
 
 ## 📋 Overview
 
-JSON-to-UI Explorer is a flexible ETL (Extract, Transform, Load) and visualization platform that:
+TroubleSight is a flexible ETL (Extract, Transform, Load) and visualization platform that:
 - **Extracts** structured data from JSON files using configurable YAML rules
 - **Transforms** the data into SQLite database tables
 - **Loads** and displays the data through customizable dashboards
@@ -70,7 +70,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-The application will start and be available at `http://localhost:8501`
+The application will start and be available at `http://localhost:8080`
 
 ## 📖 Usage Guide
 
@@ -136,9 +136,11 @@ queries:
 ### Step 4: Upload and Analyze
 
 1. Start the application
-2. Upload your ZIP file
+2. Upload your ZIP file (or use the provided `example-json-files.zip` for testing)
 3. Click "Process JSON Files"
 4. Navigate through the generated tabs to view your data
+
+> 💡 **Tip**: The project includes example JSON files in `json2ui/examples/` to help you get started quickly!
 
 ## 🏗️ Project Structure
 
@@ -153,15 +155,18 @@ TroubleSight/
 │   │   ├── 02-alerts.yaml
 │   │   └── ...
 │   ├── tabs/                   # Query and visualization configs
-│   │   ├── 1-Dashboard.yml
-│   │   ├── 2-Server-Status.yml
+│   │   ├── 1-Dashboard-Overview.yaml
+│   │   ├── 2-Server-Infrastructure.yml
 │   │   └── ...
 │   ├── utils/
 │   │   ├── ConfigDrivenETL.py # ETL engine
 │   │   └── FileCleaner.py     # Temporary file management
-│   └── examples/               # Sample JSON files
-│       └── example-json-files/
-└── tmp/                        # Temporary file storage
+│   ├── examples/               # Sample JSON files
+│   │   ├── example-json-files/
+│   │   └── example-json-files.zip
+│   ├── pages/                  # Additional Streamlit pages
+│   └── static/                 # Static assets
+└── tmp/                        # Temporary file storage (created at runtime)
 ```
 
 ## 🔧 Configuration Reference

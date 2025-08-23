@@ -336,7 +336,7 @@ def main():
 
     # Footer
     st.markdown("---")
-    st.markdown("Built by the [ThatMattCat (GitHub)](https://github.com/ThatMattCat))")
+    st.markdown("Built by the [ThatMattCat (GitHub)](https://github.com/ThatMattCat)")
 
 if __name__ == "__main__":
     main()
