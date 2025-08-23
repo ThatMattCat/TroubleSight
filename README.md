@@ -1,4 +1,4 @@
-# JSON-to-UI Explorer 🔎
+# TroubleSight Data-to-UI Explorer 🔎
 
 A powerful, configuration-driven tool that transforms JSON data into interactive dashboards and visualizations. Upload your JSON files, define extraction rules, and instantly create queryable databases with beautiful UI components - all without writing code.
 
