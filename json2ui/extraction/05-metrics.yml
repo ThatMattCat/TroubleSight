@@ -1,0 +1,24 @@
+tables:
+  api_metrics:
+    file_pattern: "metrics.json"
+    root_path: "$.metrics[*]"
+    parentFields:
+      - name: service_name
+        path: "$.service"
+        type: TEXT
+    fields:
+      - name: timestamp
+        path: "$.timestamp"
+        type: TEXT
+      - name: requests_per_second
+        path: "$.requests_per_second"
+        type: INTEGER
+      - name: avg_latency_ms
+        path: "$.avg_latency_ms"
+        type: INTEGER
+      - name: error_rate
+        path: "$.error_rate"
+        type: REAL
+      - name: cpu_percent
+        path: "$.cpu_percent"
+        type: INTEGER

@@ -1,0 +1,16 @@
+{
+  "cluster_health": "healthy",
+  "nodes_total": 5,
+  "nodes_active": 5,
+  "shards_primary": 10,
+  "shards_replica": 10,
+  "indices_count": 25,
+  "docs_count": 1547823,
+  "store_size_gb": 234.5,
+  "jvm_heap_used_percent": 62,
+  "cluster_settings": {
+    "auto_expand_replicas": "0-1",
+    "number_of_replicas": 1,
+    "refresh_interval": "5s"
+  }
+}

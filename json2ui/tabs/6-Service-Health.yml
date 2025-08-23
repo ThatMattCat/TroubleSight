@@ -1,0 +1,49 @@
+description: "Service dependency mapping and health monitoring"
+queries:
+  🏥 Service Health Status:
+    description: "Current health status of all services"
+    sql: |
+      SELECT 
+        service_name as "Service",
+        CASE status
+          WHEN 'healthy' THEN '✅'
+          WHEN 'degraded' THEN '⚠️'
+          ELSE '❌'
+        END || ' ' || status as "Status",
+        response_time_ms || ' ms' as "Response Time",
+        health_score as "Health Score",
+        dependencies_json as "Dependencies",
+        last_incident as "Last Incident"
+      FROM service_health
+      ORDER BY 
+        CASE status
+          WHEN 'unhealthy' THEN 1
+          WHEN 'degraded' THEN 2
+          ELSE 3
+        END,
+        health_score ASC
+    display:
+      type: dataframe
+
+  ❌ Unhealthy Services:
+    description: "Services currently experiencing issues"
+    sql: |
+      SELECT COUNT(*) as count
+      FROM service_health
+      WHERE status IN ('unhealthy', 'degraded')
+    display:
+      type: metric
+      label: "Services with Issues"
+
+  📊 Health Score Distribution:
+    description: "Distribution of service health scores"
+    sql: |
+      SELECT 
+        service_name,
+        health_score
+      FROM service_health
+      ORDER BY health_score DESC
+    display:
+      type: bar_chart
+      x: service_name
+      y: health_score

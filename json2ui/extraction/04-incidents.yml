@@ -1,0 +1,51 @@
+tables:
+  incidents:
+    file_pattern: "incidents.json"
+    root_path: "$.incident_report.incidents[*]"
+    parentFields:
+      - name: report_id
+        path: "$.report_id"
+        type: TEXT
+      - name: report_severity
+        path: "$.severity"
+        type: TEXT
+    fields:
+      - name: incident_id
+        path: "$.id"
+        type: TEXT
+      - name: title
+        path: "$.title"
+        type: TEXT
+      - name: status
+        path: "$.status"
+        type: TEXT
+      - name: opened_at
+        path: "$.opened_at"
+        type: TEXT
+      - name: resolved_at
+        path: "$.resolved_at"
+        type: TEXT
+      - name: impact
+        path: "$.impact"
+        type: TEXT
+      - name: root_cause
+        path: "$.root_cause"
+        type: TEXT
+
+  incident_actions:
+    file_pattern: "incidents.json"
+    root_path: "$.incident_report.incidents[*].actions[*]"
+    parentFields:
+      - name: incident_id
+        path: "$.id"
+        type: TEXT
+    fields:
+      - name: timestamp
+        path: "$.timestamp"
+        type: TEXT
+      - name: action
+        path: "$.action"
+        type: TEXT
+      - name: performed_by
+        path: "$.performed_by"
+        type: TEXT

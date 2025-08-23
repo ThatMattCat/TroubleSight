@@ -1,0 +1,30 @@
+
+{
+  "metadata": {
+    "version": "2.0",
+    "timestamp": "2025-01-15T10:30:00Z"
+  },
+  "my_array": [
+    {
+      "field1": "Alert-001",
+      "field2": "High CPU Usage",
+      "Field Three": "Critical",
+      "timestamp": "2025-01-15T09:00:00Z",
+      "affected_systems": ["web-01", "web-02"]
+    },
+    {
+      "field1": "Alert-002",
+      "field2": "Memory Leak Detected",
+      "Field Three": "Warning",
+      "timestamp": "2025-01-15T09:15:00Z",
+      "affected_systems": ["db-01"]
+    },
+    {
+      "field1": "Alert-003",
+      "field2": "Disk Space Low",
+      "Field Three": "Warning",
+      "timestamp": "2025-01-15T09:30:00Z",
+      "affected_systems": ["storage-01", "storage-02", "storage-03"]
+    }
+  ]
+}

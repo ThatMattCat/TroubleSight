@@ -1,0 +1,10 @@
+tables:
+  system_overview:
+    file_pattern: "example_3.json"
+    root_path: "$"
+    # No fields specified - will use automatic key-value extraction
+
+  cluster_status:
+    file_pattern: "*ple_4.json"  # Wildcard pattern example
+    root_path: "$"
+    # No fields specified - will use automatic key-value extraction

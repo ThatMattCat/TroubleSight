@@ -1,0 +1,61 @@
+description: "API Gateway performance metrics and trends"
+queries:
+  📈 Traffic Trend:
+    description: "Requests per second over time"
+    sql: |
+      SELECT 
+        timestamp,
+        requests_per_second
+      FROM api_metrics
+      ORDER BY timestamp
+    display:
+      type: line_chart
+      x: timestamp
+      y: requests_per_second
+
+  📊 Latency Analysis:
+    description: "Average latency trends"
+    sql: |
+      SELECT 
+        timestamp,
+        avg_latency_ms
+      FROM api_metrics
+      ORDER BY timestamp
+    display:
+      type: area_chart
+      x: timestamp
+      y: avg_latency_ms
+
+  🔴 Error Rate Monitoring:
+    description: "Error rate percentage over time"
+    sql: |
+      SELECT 
+        timestamp,
+        ROUND(error_rate * 100, 2) as error_percentage
+      FROM api_metrics
+      ORDER BY timestamp
+    display:
+      type: line_chart
+      x: timestamp
+      y: error_percentage
+
+  📊 Performance Summary:
+    description: "Key performance metrics summary"
+    sql: |
+      SELECT 
+        ROUND(AVG(requests_per_second), 0) as avg_rps,
+        ROUND(AVG(avg_latency_ms), 1) as avg_latency,
+        ROUND(AVG(error_rate) * 100, 3) as avg_error_rate,
+        MAX(requests_per_second) as peak_rps,
+        MIN(requests_per_second) as min_rps
+      FROM api_metrics
+    post_processing:
+      - type: rename_columns
+        mapping:
+          avg_rps: "Avg Requests/sec"
+          avg_latency: "Avg Latency (ms)"
+          avg_error_rate: "Avg Error Rate (%)"
+          peak_rps: "Peak Traffic"
+          min_rps: "Min Traffic"
+    display:
+      type: one_row_rotate

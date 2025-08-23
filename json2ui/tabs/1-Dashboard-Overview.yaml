@@ -1,0 +1,41 @@
+description: "System health dashboard showing key metrics and current status"
+queries:
+  🔍 System Summary:
+    description: "High-level system statistics"
+    sql: |
+      SELECT 
+        key as "Metric",
+        value as "Value"
+      FROM system_overview
+      WHERE key IN ('system_name', 'version', 'uptime_percentage', 'performance_score')
+      ORDER BY 
+        CASE key
+          WHEN 'system_name' THEN 1
+          WHEN 'version' THEN 2
+          WHEN 'uptime_percentage' THEN 3
+          WHEN 'performance_score' THEN 4
+        END
+    display:
+      type: metrics
+
+  📊 Key Performance Indicators:
+    description: "Critical system metrics at a glance"
+    sql: |
+      SELECT 
+        (SELECT value FROM system_overview WHERE key = 'active_alerts') as active_alerts,
+        (SELECT value FROM system_overview WHERE key = 'resolved_today') as resolved_today,
+        (SELECT value FROM system_overview WHERE key = 'api_calls_today') as api_calls,
+        (SELECT value FROM system_overview WHERE key = 'data_processed_gb') as data_gb
+    display:
+      type: one_row_rotate
+
+  🚨 Current Alert Count:
+    description: "Number of active alerts in the system"
+    sql: |
+      SELECT value 
+      FROM system_overview 
+      WHERE key = 'active_alerts'
+    display:
+      type: metric
+      label: "Active Alerts"
+

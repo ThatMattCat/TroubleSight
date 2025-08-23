@@ -1,0 +1,40 @@
+description: "System alerts and monitoring notifications"
+queries:
+  ⚠️ Critical Alerts:
+    description: "High-priority alerts requiring immediate attention"
+    sql: |
+      SELECT 
+        alert_id as "Alert ID",
+        description as "Description",
+        severity as "Severity",
+        timestamp as "Time",
+        affected_systems_json as "Affected Systems"
+      FROM system_alerts
+      WHERE severity = 'Critical'
+      ORDER BY timestamp DESC
+    post_processing:
+      - type: rename_columns
+        mapping:
+          affected_systems_json: "Systems Affected"
+    display:
+      type: dataframe
+
+  📊 Alert Distribution:
+    description: "Breakdown of alerts by severity"
+    sql: |
+      SELECT 
+        severity,
+        COUNT(*) as count
+      FROM system_alerts
+      GROUP BY severity
+      ORDER BY 
+        CASE severity
+          WHEN 'Critical' THEN 1
+          WHEN 'Warning' THEN 2
+          ELSE 3
+        END
+    display:
+      type: bar_chart
+      x: severity
+      y: count
+

@@ -1,0 +1,27 @@
+tables:
+  service_health:
+    file_pattern: "services_health.json"
+    root_path: "$.services[*]"
+    parentFields:
+      - name: check_timestamp
+        path: "$.check_timestamp"
+        type: TEXT
+    fields:
+      - name: service_name
+        path: "$.name"
+        type: TEXT
+      - name: status
+        path: "$.status"
+        type: TEXT
+      - name: response_time_ms
+        path: "$.response_time_ms"
+        type: INTEGER
+      - name: dependencies_json
+        path: "$.dependencies"
+        type: TEXT
+      - name: health_score
+        path: "$.health_score"
+        type: INTEGER
+      - name: last_incident
+        path: "$.last_incident"
+        type: TEXT

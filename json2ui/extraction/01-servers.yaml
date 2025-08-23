@@ -1,0 +1,20 @@
+tables:
+  server_inventory:
+    file_pattern: "example_1.json"
+    root_path: "$[*]"
+    fields:
+      - name: server_name
+        path: "$.array_field_1"
+        type: TEXT
+      - name: status
+        path: "$.array_field_2"
+        type: TEXT
+      - name: region
+        path: "$.array_field_3"
+        type: TEXT
+      - name: cpu_usage
+        path: "$.cpu_usage"
+        type: REAL
+      - name: memory_gb
+        path: "$.memory_gb"
+        type: INTEGER

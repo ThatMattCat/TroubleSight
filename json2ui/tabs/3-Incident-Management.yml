@@ -1,0 +1,60 @@
+description: "Track and analyze system incidents and their resolution"
+queries:
+  🚨 Active Incidents:
+    description: "Currently unresolved incidents requiring attention"
+    sql: |
+      SELECT 
+        incident_id as "Incident ID",
+        title as "Title",
+        status as "Status",
+        impact as "Impact",
+        opened_at as "Opened At",
+        CASE 
+          WHEN impact = 'High' THEN '🔴'
+          WHEN impact = 'Medium' THEN '🟠'
+          ELSE '🟡'
+        END || ' ' || impact as "Priority"
+      FROM incidents
+      WHERE status != 'resolved'
+      ORDER BY 
+        CASE impact
+          WHEN 'High' THEN 1
+          WHEN 'Medium' THEN 2
+          ELSE 3
+        END,
+        opened_at DESC
+    display:
+      type: dataframe
+
+  ✅ Recently Resolved:
+    description: "Incidents resolved in the last 24 hours"
+    sql: |
+      SELECT 
+        incident_id as "ID",
+        title as "Title",
+        opened_at as "Opened",
+        resolved_at as "Resolved",
+        root_cause as "Root Cause"
+      FROM incidents
+      WHERE status = 'resolved'
+        AND resolved_at IS NOT NULL
+      ORDER BY resolved_at DESC
+      LIMIT 5
+    display:
+      type: dataframe
+
+  📊 Incident Timeline:
+    description: "Detailed actions taken for all incidents"
+    sql: |
+      SELECT 
+        ia.incident_id as "Incident",
+        ia.timestamp as "Time",
+        ia.action as "Action",
+        ia.performed_by as "Performed By",
+        i.title as "Incident Title"
+      FROM incident_actions ia
+      JOIN incidents i ON ia.incident_id = i.incident_id
+      ORDER BY ia.timestamp DESC
+      LIMIT 20
+    display:
+      type: dataframe

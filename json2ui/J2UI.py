@@ -223,12 +223,6 @@ def main():
         if not unsorted_query_files:
             st.info("No query configurations found in the 'tabs' directory. Add YAML files to see query tabs here.")
         else:
-            to_remove=[]
-            for file, data in unsorted_query_files.items():
-                if st.session_state.etl.platform not in data.get('platform',''):
-                    to_remove.append(file)
-            for item in to_remove:
-                del unsorted_query_files[item]
             sorted_query_items = sorted(unsorted_query_files.items())
             query_files = dict(sorted_query_items)
 

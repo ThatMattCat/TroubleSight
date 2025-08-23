@@ -1,0 +1,63 @@
+{
+  "incident_report": {
+    "report_id": "IR-2025-001",
+    "generated_at": "2025-01-15T11:00:00Z",
+    "severity": "P1",
+    "incidents": [
+      {
+        "id": "INC-001",
+        "title": "Database Connection Pool Exhausted",
+        "status": "resolved",
+        "opened_at": "2025-01-15T03:00:00Z",
+        "resolved_at": "2025-01-15T03:45:00Z",
+        "impact": "High",
+        "affected_services": ["API", "Dashboard"],
+        "root_cause": "Connection leak in application code",
+        "actions": [
+          {
+            "timestamp": "2025-01-15T03:05:00Z",
+            "action": "Alert triggered",
+            "performed_by": "monitoring_system"
+          },
+          {
+            "timestamp": "2025-01-15T03:10:00Z",
+            "action": "Engineer notified",
+            "performed_by": "pagerduty"
+          },
+          {
+            "timestamp": "2025-01-15T03:25:00Z",
+            "action": "Connection pool increased",
+            "performed_by": "john.doe"
+          },
+          {
+            "timestamp": "2025-01-15T03:45:00Z",
+            "action": "Code fix deployed",
+            "performed_by": "jane.smith"
+          }
+        ]
+      },
+      {
+        "id": "INC-002",
+        "title": "CDN Cache Invalidation Failure",
+        "status": "investigating",
+        "opened_at": "2025-01-15T10:30:00Z",
+        "resolved_at": null,
+        "impact": "Medium",
+        "affected_services": ["Static Assets", "Images"],
+        "root_cause": "Under investigation",
+        "actions": [
+          {
+            "timestamp": "2025-01-15T10:30:00Z",
+            "action": "Alert triggered",
+            "performed_by": "monitoring_system"
+          },
+          {
+            "timestamp": "2025-01-15T10:35:00Z",
+            "action": "Manual cache purge initiated",
+            "performed_by": "ops_team"
+          }
+        ]
+      }
+    ]
+  }
+}

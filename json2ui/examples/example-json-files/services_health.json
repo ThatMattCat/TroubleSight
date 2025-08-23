@@ -1,0 +1,61 @@
+{
+  "check_timestamp": "2025-01-15T11:00:00Z",
+  "services": [
+    {
+      "name": "Frontend",
+      "status": "healthy",
+      "response_time_ms": 120,
+      "dependencies": ["API Gateway", "CDN"],
+      "health_score": 98,
+      "last_incident": "2025-01-10T14:30:00Z"
+    },
+    {
+      "name": "API Gateway",
+      "status": "healthy",
+      "response_time_ms": 45,
+      "dependencies": ["Auth Service", "Backend API"],
+      "health_score": 95,
+      "last_incident": "2025-01-12T08:15:00Z"
+    },
+    {
+      "name": "Auth Service",
+      "status": "degraded",
+      "response_time_ms": 250,
+      "dependencies": ["User Database", "Redis Cache"],
+      "health_score": 72,
+      "last_incident": "2025-01-15T10:45:00Z"
+    },
+    {
+      "name": "Backend API",
+      "status": "healthy",
+      "response_time_ms": 85,
+      "dependencies": ["Primary Database", "Message Queue"],
+      "health_score": 94,
+      "last_incident": "2025-01-08T22:00:00Z"
+    },
+    {
+      "name": "Primary Database",
+      "status": "healthy",
+      "response_time_ms": 15,
+      "dependencies": [],
+      "health_score": 99,
+      "last_incident": "2025-01-05T03:00:00Z"
+    },
+    {
+      "name": "Redis Cache",
+      "status": "unhealthy",
+      "response_time_ms": 500,
+      "dependencies": [],
+      "health_score": 45,
+      "last_incident": "2025-01-15T10:30:00Z"
+    },
+    {
+      "name": "Message Queue",
+      "status": "healthy",
+      "response_time_ms": 30,
+      "dependencies": [],
+      "health_score": 96,
+      "last_incident": "2024-12-28T16:00:00Z"
+    }
+  ]
+}

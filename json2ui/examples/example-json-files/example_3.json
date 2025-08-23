@@ -1,0 +1,12 @@
+{
+  "system_name": "TroubleSight Monitor",
+  "version": "4.2.1",
+  "last_update": "2025-01-15",
+  "total_servers": 42,
+  "active_alerts": 7,
+  "resolved_today": 23,
+  "performance_score": 94.5,
+  "uptime_percentage": 99.97,
+  "data_processed_gb": 1250.75,
+  "api_calls_today": 458923
+}

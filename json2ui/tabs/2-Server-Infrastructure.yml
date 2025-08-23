@@ -1,0 +1,46 @@
+description: "Server inventory and infrastructure monitoring"
+queries:
+  🖥️ Server Status Overview:
+    description: "All servers with their current status and resource usage"
+    sql: |
+      SELECT 
+        server_name as "Server Name",
+        status as "Status",
+        region as "Region",
+        cpu_usage as "CPU Usage (%)",
+        memory_gb as "Memory (GB)",
+        CASE 
+          WHEN cpu_usage > 70 THEN '⚠️ High'
+          WHEN cpu_usage > 50 THEN '🟡 Moderate'
+          ELSE '✅ Normal'
+        END as "CPU Alert"
+      FROM server_inventory
+      ORDER BY cpu_usage DESC
+    display:
+      type: dataframe
+
+  📈 CPU Usage Chart:
+    description: "Visual representation of CPU usage across servers"
+    sql: |
+      SELECT 
+        server_name,
+        cpu_usage
+      FROM server_inventory
+      WHERE status = 'Running'
+      ORDER BY cpu_usage DESC
+    display:
+      type: bar_chart
+      x: server_name
+      y: cpu_usage
+
+  🔢 Infrastructure Summary:
+    description: "Quick stats about the infrastructure"
+    sql: |
+      SELECT 
+        COUNT(*) as total_servers,
+        SUM(CASE WHEN status = 'Running' THEN 1 ELSE 0 END) as running_servers,
+        ROUND(AVG(cpu_usage), 2) as avg_cpu_usage,
+        SUM(memory_gb) as total_memory_gb
+      FROM server_inventory
+    display:
+      type: one_row_rotate

@@ -1,0 +1,20 @@
+tables:
+  system_alerts:
+    file_pattern: "example_2.json"
+    root_path: "$.my_array[*]"
+    fields:
+      - name: alert_id
+        path: "$.field1"
+        type: TEXT
+      - name: description
+        path: "$.field2"
+        type: TEXT
+      - name: severity
+        path: "$['Field Three']"
+        type: TEXT
+      - name: timestamp
+        path: "$.timestamp"
+        type: TEXT
+      - name: affected_systems_json
+        path: "$.affected_systems"
+        type: TEXT

@@ -1,0 +1,32 @@
+description: "Elasticsearch cluster health and statistics"
+queries:
+  🔧 Cluster Overview:
+    description: "Key cluster metrics and configuration"
+    sql: |
+      SELECT 
+        key as "Parameter",
+        value as "Value"
+      FROM cluster_status
+      WHERE key NOT LIKE '%settings%'
+      ORDER BY key
+    display:
+      type: dataframe
+
+  📊 Cluster Health Metrics:
+    description: "Critical cluster health indicators"
+    sql: |
+      SELECT 
+        (SELECT value FROM cluster_status WHERE key = 'cluster_health') as health,
+        (SELECT value FROM cluster_status WHERE key = 'nodes_active') || '/' || 
+        (SELECT value FROM cluster_status WHERE key = 'nodes_total') as nodes,
+        (SELECT value FROM cluster_status WHERE key = 'docs_count') as documents,
+        (SELECT value FROM cluster_status WHERE key = 'store_size_gb') || ' GB' as storage
+    post_processing:
+      - type: rename_columns
+        mapping:
+          health: "Cluster Health"
+          nodes: "Active Nodes"
+          documents: "Document Count"
+          storage: "Storage Used"
+    display:
+      type: one_row_rotate

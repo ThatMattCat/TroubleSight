@@ -1,0 +1,23 @@
+[
+  {
+    "array_field_1": "Production Server",
+    "array_field_2": "Running",
+    "array_field_3": "us-east-1",
+    "cpu_usage": 45.2,
+    "memory_gb": 16
+  },
+  {
+    "array_field_1": "Development Server",
+    "array_field_2": "Stopped",
+    "array_field_3": "us-west-2",
+    "cpu_usage": 0,
+    "memory_gb": 8
+  },
+  {
+    "array_field_1": "Testing Server",
+    "array_field_2": "Running",
+    "array_field_3": "eu-west-1",
+    "cpu_usage": 78.9,
+    "memory_gb": 32
+  }
+]
